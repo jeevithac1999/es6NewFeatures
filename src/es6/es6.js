@@ -2,7 +2,7 @@ const marks = [20, 50, 60, 20];
 const increasedMarks = marks.map(mark => {
   return (mark = 5);
 });
-console.log(increasedMarks);
+console.log("ïncreased marks", increasedMarks);
 const simplifiedIncrease = marks.map(mark => mark + 5);
 const filteredMarks = marks.filter(mark => {
   if (mark > 30) {
@@ -45,13 +45,13 @@ const myObject = {
 const { one, two, three, ...otherProps } = myObject;
 console.log({ one: one, two: two, three: three });
 console.log({ one, two, three });
-function useLessFunction(){
-var myVariable="aaa";
+function useLessFunction() {
+  var myVariable = "aaa";
 }
-if(true){
-  var myVariable="aaa";
-  let Second="ssss";
-  const Third="tttt";  
+if (true) {
+  var myVariable = "aaa";
+  let Second = "ssss";
+  const Third = "tttt";
 }
 console.log(myVariable);
 //console.log(Second);
