@@ -3,7 +3,7 @@ const bodyparser = require("body-parser");
 const stu = require("./models/Students");
 const app = express();
 app.get("/", (request, response) => {
-  response.send("hello");
+  response.send("hello ");
 });
 app.use(bodyparser.json());
 app.get("/students", (request, response) => {
