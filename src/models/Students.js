@@ -1,3 +1,5 @@
+//array of objects or collection of objects
+//for students
 const students = [
   {
     id:1,
