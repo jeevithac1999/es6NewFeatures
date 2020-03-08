@@ -39,7 +39,6 @@ app.get("/web/students", async (req, res) => {
   await studentsInfo.findAll().then(response => {
     response.forEach(student => students.push(student.get()));
   });
-
   res.render("students", {
     layout: "navigation",
     pageTitle: "Students Details",
