@@ -1,18 +1,23 @@
-<h3>Weather Report of Chennai</h3>
-
-<table class="table">
+<hr>
+<br>
+<center><h3>Weather Report of Chennai</h3></center>
+<br>
+<hr>
+<table class="table" bgcolor="#e8f7ff">
   <thead>
     <tr>
-      <th scope="col">Day</th>
-      <th scope="col">High/LowTemperature</th>
-      <th scope="col">Summary</th>
+      <th>Day</th>
+      <th>HighTemperature</th>
+      <th>LowTemperature</th>
+      <th>Summary</th>
     </tr>
   </thead>
   <tbody>
     {{#each weatherReport}}
     <tr>
-      <th scope="row">{{dateFormatter this.time}}</th>
-      <td>{{this.temperatureHigh}}/{{this.temperatureLow}}</td>
+      <th>{{dateFormatter this.time}}</th>
+      <td>{{this.temperatureHigh}}</td>
+      <td>{{this.temperatureLow}}</td>
       <td>{{this.summary}}</td>
     </tr>
     {{/each}}

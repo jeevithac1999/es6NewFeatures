@@ -1,17 +1,22 @@
-<table class="table">
+<hr>
+<br>
+<center><h3>STUDENTS INFORMATION</h3></center>
+<br>
+<hr>
+<table class="table" bgcolor="#e2f9f9">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">FIRST NAME</th>
-      <th scope="col">LAST NAME</th>
-      <th scope="col">AGE</th>
-      <th scope="col">GENDER</th>
+      <th>ID</th>
+      <th>FIRST NAME</th>
+      <th>LAST NAME</th>
+      <th>AGE</th>
+      <th>GENDER</th>
     </tr>
   </thead>
   <tbody>
     {{#each students}}
     <tr>
-      <th scope="row">{{this.id}}</th>
+      <th>{{this.id}}</th>
       <td>{{this.firstname}}</td>
       <td>{{this.lastname}}</td>
       <td>{{this.age}}</td>
