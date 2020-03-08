@@ -23,39 +23,5 @@ const StudentInfo = ClassDB.define("studentsinfos", {
     allowNull: false
   }
 });
-// const newStudent = [
-//   {
-//     firstname: "Jeevitha",
-//     lastname: "Chamarthi",
-//     age: 23,
-//     gender: "female"
-//   },
-//   {
-//     firstname: "Harish",
-//     lastname: "Chamarthi",
-//     age: 23,
-//     gender: "male"
-//   },
-//   {
-//     firstname: "Bhagyalakshmi",
-//     lastname: "Chamarthi",
-//     age: 24,
-//     gender: "female"
-//   },
-//   {
-//     firstname: "Venkatachalapathy",
-//     lastname: "Chamarthi",
-//     age: 24,
-//     gender: "male"
-//   }
-// ];
 
-// StudentInfo.sync({ force: true })
-//   .then(() => {
-//     return StudentInfo.bulkCreate(newStudent, { returning: true });
-//   })
-//   .then(result => {
-//     console.log(result.forEach(item => console.log(item.get())));
-//   })
-//   .catch(console.error);
 module.exports = StudentInfo;
