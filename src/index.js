@@ -1,38 +1,71 @@
 const express = require("express");
-const bodyparser = require("body-parser");
-const stu = require("./models/Students");
-const studentsRouter=require("./routers/studentsRouter");
-const studentRouter=require("./routers/studentRouter");
+const bodyParser = require("body-parser");
+const expressHbs = require("express-handlebars");
+const path = require("path");
+const studentsRouter = require("./routers/studentsRouter");
+const studentRouter = require("./routers/studentRouter");
+const students = require("./models/Students");
+const formatIndex = require("./views/helpers/formatIndex");
+const ifEquality = require("./views/helpers/ifEquality");
 const app = express();
-app.get("/", (request, response) => {
-  response.send("hello ");
-});
-app.use(bodyparser.json());
-app.use("/students",studentsRouter);
-app.use("/student",studentRouter);
-// app.get("/students", (request, response) => {
-//   //response.status(200);
-//   response.json(stu);
-//   // response.send(stu);
-// });
-// app.post("/students", (request, response) => {
-//   // response.send(request.body);
-//   if (request.body.id && request.body.firstname) {
-//     stu.push(request.body);
-//     response.status(200).json({ message: "Student created successfully" });
-//   } else {
-//     response.status(400).send("bad request");
-//   }
-// });
-app.get("/students/:id", (request, response) => {
-  const {id =""}=request.params;
-  const requiredStudent=stu.find(stu=>{
-    if(parseInt(id)===stu.id) return true;
-    else return false;
 
-  });
-  response.status(200).json({student:requiredStudent});
+const hbs = expressHbs.create({
+  extname: ".hbs",
+  layoutsDir: path.join(__dirname, "./views/layouts"),
+  partialsDir: path.join(__dirname, "./views/partials"),
+  helpers: {
+    formatIndex,
+    ifEquality
+  }
 });
-const server = app.listen(8080, (request, response) => {
-  console.log(`Server running on port ${server.address.port}.`);
+app.engine(".hbs", hbs.engine);
+app.set("view engine", ".hbs");
+app.set("views", path.join(__dirname, "./views"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.get("/", (req, res) => {
+  res.render("home", {
+    layout: "hero",
+    pageTitle: "Home"
+    // students
+  });
+});
+app.get("/web/students", (req, res) => {
+  res.render("students", {
+    layout: "navigation",
+    pageTitle: "Students",
+    students
+  });
+});
+app.get("/web/add-student/", (req, res) => {
+  res.render("addStudent", {
+    layout: "navigation",
+    pageTitle: "Add New Student",
+    mode: "add",
+    studentID: students.length + 1
+  });
+});
+app.get("/web/edit-student/:id", (req, res) => {
+  const { id = "" } = req.params;
+  const requiredStudent = students.find(student => {
+    if (parseInt(id, 10) === student.id) return true;
+    else return false;
+  });
+  if (requiredStudent) {
+    res.render("addStudent", {
+      layout: "navigation",
+      pageTitle: "Add New Student",
+      studentID: requiredStudent.id,
+      mode: "edit",
+      student: requiredStudent
+    });
+  } else {
+    res.status(404).send("Not Found");
+  }
+});
+
+app.use("/students", studentsRouter);
+app.use("/student", studentRouter);
+const server = app.listen(8080, () => {
+  console.log(`Server running in port ${server.address().port}`);
 });

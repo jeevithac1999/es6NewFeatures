@@ -4,7 +4,7 @@ const studentRouter = express.Router();
 
 studentRouter
 .post("/", (req, res) => {
-  if (req.body.id && req.body.firstName) {
+  if (req.body.firstname && req.body.lastname) {
     students.push(req.body);
     res.status(200).json({ message: "Student created successfully" });
   } else {
@@ -32,7 +32,7 @@ studentRouter
       if (parseInt(id) === student.id) {
         requiredStudentIndex = studentIndex;
         return true;
-      } else return false;
+      } return false;
     });
     if(requiredStudent){
     const { 
@@ -53,7 +53,7 @@ studentRouter
     console.log(req.body);
     console.log(requiredStudent);
     console.log(requiredStudentIndex);
-    res.send("ok");
+    res.status(200).send("ok");
   })
   .delete("/:id", (req, res) => {
     const {id} = req.params;

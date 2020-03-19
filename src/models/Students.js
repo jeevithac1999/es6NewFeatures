@@ -8,8 +8,9 @@ const students = [
     age: 23,
     gender: "female",
     marks: {
-      s: 20,
-      a: 56
+      s1: 20,
+      s2: 56,
+      s3:34
     }
   },
   {
@@ -19,8 +20,9 @@ const students = [
     age: 23,
     gender: "female",
     marks: {
-      s: 20,
-      a: 56
+      s1: 20,
+      s2: 56,
+      s3:78
     }
   },
   {
@@ -30,8 +32,9 @@ const students = [
     age: 23,
     gender: "female",
     marks: {
-      s: 20,
-      a: 56
+      s1: 20,
+      s2: 56,
+      s3:87
     }
   }
 ];
