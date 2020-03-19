@@ -6,7 +6,7 @@ const db = require("./config/classDB");
 const { QueryTypes } = require("sequelize");
 const studentsInfo = require("./models/StudentsInfo");
 const ifEquality = require("./views/helpers/ifEquality");
-const dateFormatter=require("./views/helpers/dateFormat")
+const dateFormatter = require("./views/helpers/dateFormat");
 
 const DarkSky = require("dark-sky");
 const darksky = new DarkSky(process.env.DARK_SKY);
@@ -89,7 +89,7 @@ app.get("/web/marksheet", async (req, res) => {
   var MarkSheet;
   await db
     .query(
-      "select first_name as names, array_agg(distinct m.subjects) as subjects, array_agg(distinct m.marks) as marks from studentsinfos s join marks m on s.id=m.id group by 1",
+      "select first_name as names, array_agg(m.subjects order by m.subjects) as subjects, array_agg(m.marks order by m.subjects) as marks from studentsinfos s join marks m on s.id=m.id group by 1",
       {
         type: QueryTypes.SELECT
       }
